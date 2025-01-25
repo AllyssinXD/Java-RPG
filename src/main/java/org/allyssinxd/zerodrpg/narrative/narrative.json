@@ -1,0 +1,15 @@
+{
+  "id": "introducao",
+  "texto": "Você acorda em uma sala escura, sem se lembrar de como chegou lá. A porta à sua frente parece a única saída.",
+  "flags": ["inicio_jogo"],
+  "opcoes": [
+    {
+      "texto": "Abrir a porta",
+      "proximo_id": "capitulo1_entrada"
+    },
+    {
+      "texto": "Explorar a sala",
+      "proximo_id": "capitulo1_sala"
+    }
+  ]
+}
