@@ -18,9 +18,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        TextUtils.typeText(".\n.\n.\n.\n.\n", 300);
         // Carregar jsons de saves
-        TextUtils.typeText("SubVirus", 300);
+        TextUtils.typeText("SubVirus", 50);
         Choose menuChoices = new Choose();
 
         Game currentGame = null;
@@ -33,39 +32,8 @@ public class Main {
         if(action.d.equals("new")) currentGame = Game.NewGame();
         else if(action.d.equals("load")) currentGame = Game.LoadGame(0);
 
-        if(currentGame.getChapter() == 0){
-            ObjectMapper mapper = new ObjectMapper();
-
-            File narrativeJson = new File(System.getProperty("user.dir") + "/src/main/" +
-                    "java/org/allyssinxd/zerodrpg/narrative/narrative.json");
-            StringBuilder narrative = new StringBuilder();
-            try {
-                Scanner scanner = new Scanner(narrativeJson);
-                while(scanner.hasNextLine()){
-                    narrative.append(scanner.nextLine());
-                }
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-
-            try {
-                List<Capter> list = mapper.readValue(narrative.toString(), new TypeReference<List<Capter>>() {});
-
-                String[] splitedByLines = list.getFirst().getText().split("\n");
-                for (int j = 0; j < splitedByLines.length; j++) {
-                    TextUtils.typeText(splitedByLines[j], 50);
-                    TextUtils.pause(1500);
-                }
-
-                for(String flag : list.getFirst().getFlags()){
-                    currentGame.AddFlag(flag);
-                }
-
-
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        if (currentGame == null) return;
+        currentGame.update();
     }
 
 

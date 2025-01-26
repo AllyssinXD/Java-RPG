@@ -4,5 +4,5 @@
     "flags": [
       "inicio_jogo"
     ],
-    "trigger": ""
+    "trigger": "end-chapter-1"
 }]
