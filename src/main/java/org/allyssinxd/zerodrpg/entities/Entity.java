@@ -1,7 +1,4 @@
-package org.allyssinxd.zerodrpg.entity;
-
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
+package org.allyssinxd.zerodrpg.entities;
 
 public class Entity {
 
@@ -13,6 +10,10 @@ public class Entity {
 
     public Entity(String name, int life, int level, int stamina){
         this.id = hashCode();
+        this.name = name;
+        this.life = life;
+        this.level = level;
+        this.stamina = stamina;
     }
 
     public int getId() {

@@ -1,15 +1,8 @@
-{
-  "id": "introducao",
-  "texto": "Você acorda em uma sala escura, sem se lembrar de como chegou lá. A porta à sua frente parece a única saída.",
-  "flags": ["inicio_jogo"],
-  "opcoes": [
-    {
-      "texto": "Abrir a porta",
-      "proximo_id": "capitulo1_entrada"
-    },
-    {
-      "texto": "Explorar a sala",
-      "proximo_id": "capitulo1_sala"
-    }
-  ]
-}
+[{
+    "title" : "Introdução",
+    "text": "O céu tinha aquela cor particular que antecede o amanhecer – não era noite, mas tampouco dia.\n Um cinza opaco que parecia prender o mundo entre o sono e a vigília.\n Elias puxou o casaco para perto do corpo enquanto o vento cortante da manhã o fazia estremecer.\n A fábrica ao longe soltava sua fumaça habitual, preenchendo o ar com o cheiro acre de carvão e ferrugem.\n Era uma visão que deveria ser familiar, mas cada dia parecia mais sufocante.\n\n    \"Acordar. Trabalhar. Dormir. É isso que resta para quem não tem escolha. Cada turno mais um passo rumo ao nada.\"\n\nO som ritmado das botas de Elias sobre a terra dura era a única coisa que quebrava o silêncio enquanto ele atravessava a floresta seca. Troncos despidos e galhos retorcidos cercavam o caminho, como se a própria natureza tivesse desistido.\n\n    \"Ela costumava dizer que havia beleza em todo lugar, até mesmo na cinza. 'As coisas só morrem porque viveram antes', ela dizia. Mas como se vive em um lugar que só consome? Como se encontra beleza em algo que apenas apaga o que existe?\"\n\nElias parou. Havia algo no chão. Um vulto humano, imóvel. Ele hesitou, o coração batendo forte contra o peito.\n\n    Elias: \"Ei... você está bem?\"\n\nNenhuma resposta. Apenas um som fraco, algo entre um suspiro e um gemido. Elias se abaixou, afastando a poeira que cobria o rosto do homem. Ele parecia velho, mas não pela idade – era o tipo de desgaste que a vida impunha aos fracos.\n\n    Homem: (com voz trêmula) \"Coração... o coração deve parar...\"\n\nElias franziu o cenho, confuso.\n\n    Elias: \"Que coração? Do que você está falando?\"\n\nO homem estendeu a mão trêmula, segurando algo. Um pedaço de papel, dobrado e manchado. Com esforço, ele o entregou a Elias antes de deixar cair o braço.\n\n    Homem: \"... não há tempo... o coração da máquina... o mapa... siga...\"\n\nElias pegou o papel, hesitando. O homem deu um último suspiro, e então ficou em silêncio.\n\n    \"Não sei por que o peguei. Talvez fosse curiosidade, ou talvez algo mais. Algo que nem mesmo entendi no momento. Mas havia algo naquele olhar, naquela última palavra... Como se ele soubesse algo que o resto de nós não sabe.\"\n\nEle desdobrou o papel com cuidado. Um mapa rudimentar, com marcas que pareciam apontar para algo distante.\n\n    \"O coração da máquina. Uma frase sem sentido. Mas aqui estou eu, segurando o que pode ser uma resposta. Ou um caminho. Talvez ambos. Talvez nenhum.\"\n\nElias olhou uma última vez para o corpo inerte, depois para a fábrica ao longe, e então para o horizonte. O vento soprou novamente, levando consigo as folhas secas que ainda insistiam em resistir.\n\nEle deu o primeiro passo.\n",
+    "flags": [
+      "inicio_jogo"
+    ],
+    "trigger": ""
+}]
