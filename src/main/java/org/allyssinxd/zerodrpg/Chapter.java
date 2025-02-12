@@ -1,12 +1,12 @@
 package org.allyssinxd.zerodrpg;
 
-public class Capter {
+public class Chapter {
     private String title = "";
     private String text = "";
     private String[] flags = {};
     private String trigger = "";
 
-    public Capter(){
+    public Chapter(){
 
     }
 

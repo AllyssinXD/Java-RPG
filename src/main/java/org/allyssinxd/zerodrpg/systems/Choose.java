@@ -25,6 +25,7 @@ public class Choose {
 
         while(!ended) {
             ShowOptions();
+            if (!scanner.hasNextInt()) return;
             int choose = scanner.nextInt();
             if (choose > options.size() || choose <= 0) {
                 System.out.println("!          Escolha inválida       !");
@@ -34,6 +35,6 @@ public class Choose {
             }
         }
 
-        scanner.close();
+        //scanner.close();
     }
 }

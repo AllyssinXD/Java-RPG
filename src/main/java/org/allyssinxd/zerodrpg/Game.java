@@ -1,29 +1,30 @@
 package org.allyssinxd.zerodrpg;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.allyssinxd.zerodrpg.entities.Player;
+import org.allyssinxd.zerodrpg.systems.*;
 import org.allyssinxd.zerodrpg.utils.TextUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Game {
-    //Mechs
-    private final Player player;
 
-    //History
     private GameState gameState;
+    private final Player player;
     private ArrayList<String> flags = new ArrayList<String>();
+    private String activeTrigger = "";
     private int chapter;
-
     private final int savingSlot;
+    private boolean isOver = false;
+    private Location location;
+
+    public NarrativeManager narrativeManager = new NarrativeManager(this);
+    public ExplorationManager explorationManager = new ExplorationManager(this);
+    public BattleManager battleManager = new BattleManager(this);
+    public TriggerManager triggerManager = new TriggerManager(this);
 
     public Game(int savingSlot){
+        location = Location.getLocationById("CorvellanFlorest");
         gameState = GameState.NARRATIVE;
         player = new Player(50, 1, 20);
         this.savingSlot = savingSlot;
@@ -40,15 +41,17 @@ public class Game {
         int i = 0;
         File gameSaveFile = new File("");
         while (!cleanSlot) {
-            gameSaveFile = new File(System.getProperty("user.dir") + "/saves/slot"+i+".json");
+            gameSaveFile = new File(System.getProperty("user.dir") +
+                    "/saves/slot"+i+".json");
             if(!gameSaveFile.exists()) cleanSlot=true;
             i++;
         }
 
         //Creates new game on the found empty slot
         try{
-            if(gameSaveFile.createNewFile())
+            if(gameSaveFile.createNewFile()) {
                 System.out.println("Novo jogo criado no Slot " + i);
+            }
             else return null;
 
             return new Game(i);
@@ -101,73 +104,27 @@ public class Game {
         this.gameState = gameState;
     }
 
-    public void update(){
-        switch (gameState){
-            case NARRATIVE :
-                handleNarrative();
-            case EXPLORATION:
-                return;
-        }
+    public boolean isOver() {
+        return isOver;
     }
 
-    private void handleNarrative() {
-        if(getChapter() == 0){
-            if(!getFlags().contains("inicio_jogo")){
-                handleChapter(0);
-                return;
-            }
-            if(getFlags().contains("Blob")) {
-                handleChapter(1);
-                return;
-            }
-        }
+    public void setOver(boolean over) {
+        isOver = over;
     }
 
-    private void handleChapter(int chapter){
-        ObjectMapper mapper = new ObjectMapper();
-        File narrativeJson = new File(System.getProperty("user.dir") + "/src/main/" +
-                "java/org/allyssinxd/zerodrpg/narrative/narrative.json");
-        StringBuilder narrative = new StringBuilder();
-
-        try {
-            //Read All Narrative File
-            Scanner scanner = new Scanner(narrativeJson);
-
-            while(scanner.hasNextLine()) {
-                narrative.append(scanner.nextLine());
-            }
-
-            List<Capter> listOfChapters = mapper.readValue(narrative.toString(), new TypeReference<List<Capter>>() {});
-            String[] chapterByLines = listOfChapters.get(chapter).getText().split("\n");
-
-            for (String line : chapterByLines) {
-                TextUtils.typeText(line, 50);
-                TextUtils.pause(1500);
-            }
-
-            for(String flag : listOfChapters.get(chapter).getFlags()){
-                AddFlag(flag);
-            }
-
-            handleTrigger(listOfChapters.get(chapter).getTrigger());
-        } catch (JsonProcessingException e) {
-            System.out.println("Erro ao ler arquivo json.");
-        }  catch (FileNotFoundException e) {
-            System.out.println("Erro ao ler arquivo inexistente.");
-        }
+    public String getActiveTrigger() {
+        return activeTrigger;
     }
 
-    private void handleTrigger(String trigger){
-        if(trigger.equals("end-chapter-1")){
-            setGameState(GameState.EXPLORATION);
-            System.out.println("Iniciando jogabilidade capitulo 1");
-            update();
-        }
+    public void setActiveTrigger(String activeTrigger) {
+        this.activeTrigger = activeTrigger;
     }
 
-    private void handleExploration(){
-        if(getFlags().getLast().equals("inicio_jogo")){
-            //Proxima escolha
-        }
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

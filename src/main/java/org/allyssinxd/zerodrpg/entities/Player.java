@@ -11,4 +11,5 @@ public class Player extends Entity{
     public Player(int life, int level, int stamina) {
         super("Elias",life, level, stamina);
     }
+
 }
